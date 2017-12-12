@@ -1,0 +1,123 @@
+$default-background: #9ab9ed;
+$navbar-background: #4777c5;
+$hover-font-color: #3ab36c;
+$active-font-color: #4ee04e;
+
+body {
+    height: 100vh;
+    background-color: $default-background;
+
+    nav {
+        position: fixed;
+        height: 50px;
+        width: 100%;
+        border-bottom: 1px solid black;
+        display: flex;
+        align-items: center;
+        z-index: 1;
+        background-color: $navbar-background;
+    }
+
+    a {
+        font-size: 2em;
+        flex: 1 1 auto; 
+        margin: 0 0 0 250px;
+        text-decoration: none;
+        
+        &:hover {
+            color: $hover-font-color;
+        }
+    }
+
+    .active {
+        color: $active-font-color;
+    }
+
+    #all-campuses {
+        padding-top: 50px;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;   
+            text-align: center;
+
+            span {
+                padding-right:20px;
+            }
+
+            img {
+                display: inline;
+            }
+
+            p {
+                color: red;
+                padding-left: 50%;
+            }
+        }
+    }
+
+    #all-students, #students {
+        padding-top:50px;
+        font-size: .7em;
+
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;     
+        }       
+    }
+
+    #single-student {
+        padding-top: 60px;
+        padding-left: 30%;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    #single-campus {
+        padding-top: 60px;
+        padding-left: 30%;
+
+        p {
+            color: red;
+            font-size: .7em;
+        }
+    }
+
+    .form-group {
+        padding-top: 20px;
+        padding-left: 40%;
+        display: block;
+
+        span {
+            font-size: 2em;
+        }
+
+        input{
+            display: block;
+            margin: 5px;
+        }
+
+        #description{
+            height: 200px;
+            width: 200px;            
+        }
+
+        button {
+            margin-bottom: 40px;
+        }
+
+        #gpa {
+            display: inline;
+        }
+
+        #opt {
+            display: block;
+        }
+    }
+}
