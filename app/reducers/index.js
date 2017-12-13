@@ -5,12 +5,16 @@ import campuses from './campuses';
 import students from './students';
 import newCampus from './addCampus';
 import newStudent from './addStudent';
+import updatedStudent from './updateStudent';
+import updatedCampus from './updateCampus'
 
 const rootReducer = combineReducers({
   campuses,
   students,
   newCampus,
-  newStudent
+  newStudent,
+  updatedStudent,
+  updatedCampus
 });
 
 

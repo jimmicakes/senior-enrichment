@@ -1,35 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    addfName,
-    addlName,
-    addEmail,
-    addGpa,
-    addCampusId,
-    postStudent
+    updatefName,
+    updatelName,
+    updateEmail,
+    updateGpa,
+    updateCampusId,
+    putStudent
 } from '../store';
 
-function AddStudent(props) {
+function UpdateStudent(props) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
-                <span>Add a Student</span>
+                <span>Update Info.</span>
                 <input
-                    value={props.newStudent.firstName}
+                    value={props.updatedStudent.firstName}
                     onChange={props.handleChange}
                     type="text"
                     name="fName"
                     placeholder="Enter first name"
                 />
                 <input
-                    value={props.newStudent.lastName}
+                    value={props.updatedStudent.lastName}
                     onChange={props.handleChange}
                     type="text"
                     name="lName"
                     placeholder="Enter last name"
                 />
                 <input
-                    value={props.newStudent.email}
+                    value={props.updatedStudent.email}
                     onChange={props.handleChange}
                     type="text"
                     name="email"
@@ -38,7 +38,7 @@ function AddStudent(props) {
                 />
                 <label>GPA: </label>
                 <input
-                    value={props.newStudent.gpa}
+                    value={props.updatedStudent.gpa}
                     onChange={props.handleChange}
                     type="number"
                     step="0.1"
@@ -47,12 +47,11 @@ function AddStudent(props) {
                     max="4"
                     name="gpa"
                 />
-                <div id="opt">
+                <div>
                     <label >Campus: </label>
                     <select
                         onChange={props.handleChange}
                         name="campusId"
-                        value={props.id}
                     >
                         {props.campuses.map(campus =>
                             <option
@@ -65,7 +64,11 @@ function AddStudent(props) {
                 </div>
             </div>
             <div className="form-group">
-                <button type="submit">Add Student</button>
+                <button
+                    type="submit"
+                    name="btn"
+                    value={props.sid}
+                >Update</button>
             </div>
         </form>
     );
@@ -75,7 +78,7 @@ function AddStudent(props) {
 const mapStateToProps = function (state) {
     return {
         campuses: state.campuses,
-        newStudent: state.newStudent
+        updatedStudent: state.updatedStudent
     };
 };
 
@@ -83,15 +86,15 @@ const mapDispatchToProps = function (dispatch) {
     return {
         handleChange(evt) {
             if (evt.target.name === 'fName')
-                dispatch(addfName(evt.target.value));
+                dispatch(updatefName(evt.target.value));
             if (evt.target.name === 'lName')
-                dispatch(addlName(evt.target.value));
+                dispatch(updatelName(evt.target.value));
             if (evt.target.name === 'email')
-                dispatch(addEmail(evt.target.value));
+                dispatch(updateEmail(evt.target.value));
             if (evt.target.name === 'gpa')
-                dispatch(addGpa(evt.target.value));
+                dispatch(updateGpa(evt.target.value));
             if (evt.target.name === 'campusId')
-                dispatch(addCampusId(evt.target.value));
+                dispatch(updateCampusId(evt.target.value));
         },
         handleSubmit(evt) {
             evt.preventDefault();
@@ -100,18 +103,20 @@ const mapDispatchToProps = function (dispatch) {
             const email = evt.target.email.value;
             const gpa = evt.target.gpa.value;
             const campusId = evt.target.campusId.value;
-            const newStudent = {
+            const student = {
                 firstName,
                 lastName,
                 email,
                 gpa,
                 campusId
             }
-            dispatch(postStudent(newStudent));
-            dispatch(addfName(''));
-            dispatch(addlName(''));
-            dispatch(addEmail(''));
-            dispatch(addGpa(0));
+            const id = evt.target.btn.value.toString();
+            console.log(student.id);
+            dispatch(putStudent(student, id));
+            dispatch(updatefName(''));
+            dispatch(updatelName(''));
+            dispatch(updateEmail(''));
+            dispatch(updateGpa(0));
         }
     };
 };
@@ -119,4 +124,4 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddStudent);
+)(UpdateStudent);

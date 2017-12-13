@@ -24,6 +24,7 @@ apiRouter.post('/', (req, res, next) => {
 apiRouter.put('/:campusId', (req, res, next) => {
     Campus.findById(req.params.campusId)
         .then(campus => campus.update(req.body))
+        .then(updatedCampus => res.send(updatedCampus))
         .catch(next);
 });
 

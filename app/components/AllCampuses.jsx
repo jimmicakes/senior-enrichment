@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import AddCampus from './AddCampus';
+import { deleteCampus } from '../store';
+
 
 function AllCampuses(props) {
     return (
@@ -16,6 +18,10 @@ function AllCampuses(props) {
                                     <img src={campus.imageUrl} alt={campus.name} />
                                 </NavLink>
                                 <p>{campus.description}</p>
+                                <button
+                                    value={campus.id}
+                                    onClick={props.handleClick}
+                                >destroy</button>
                             </li>
                         );
                     })
@@ -32,4 +38,16 @@ const mapStateToProps = function (state) {
     };
 };
 
-export default withRouter(connect(mapStateToProps)(AllCampuses));
+const mapDispatchToProps = function (dispatch) {
+    return {
+        handleClick(evt) {
+            evt.preventDefault();
+            dispatch(deleteCampus(evt.target.value));
+        }
+    }
+}
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AllCampuses));

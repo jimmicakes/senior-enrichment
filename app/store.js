@@ -9,3 +9,5 @@ export * from './reducers/campuses';
 export * from './reducers/students';
 export * from './reducers/addCampus';
 export * from './reducers/addStudent';
+export * from './reducers/updateStudent';
+export * from './reducers/updateCampus';

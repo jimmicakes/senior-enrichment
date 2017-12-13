@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import AddStudent from './AddStudent';
-import { deleteStudent } from '../store';
+import { deleteStudent, fetchStudents } from '../store';
 
 function AllStudents(props) {
     return (
@@ -18,7 +18,7 @@ function AllStudents(props) {
                                 <button
                                     value={student.id}
                                     onClick={props.handleClick}
-                                >delete</button>
+                                >expel</button>
                             </li>
                         );
                     })
@@ -40,6 +40,7 @@ const mapDispatchToProps = function (dispatch) {
     return {
         handleClick(evt) {
             dispatch(deleteStudent(evt.target.value));
+            dispatch(fetchStudents());
         }
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
+import UpdateStudent from './UpdateStudent'
 
 function SingleStudent(props) {
     const studentId = Number(props.match.params.studentId);
@@ -8,7 +9,8 @@ function SingleStudent(props) {
         student.id === studentId)[0];
     const allCampuses = props.campuses;
     const campus = allCampuses.filter(campus =>
-        campus.id === student.campusId)[0];
+        campus.id === Number(student.campusId))[0];
+    console.log(student)
     return (
         <div id="single-student">
             <ul>
@@ -21,6 +23,7 @@ function SingleStudent(props) {
                     </NavLink>
                 </li>
             </ul>
+            <UpdateStudent sid={studentId} />
         </div>
     )
 }
